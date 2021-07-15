@@ -2,6 +2,11 @@ import "./bootstrap.css";
 import "./style.scss";
 
 const form = document.getElementById("form");
+const firstNameMsg = isFirstNameValid().msg;
+//const firstNameMsg = document.createElement('p');
+//const firstNameP = getElementById('first-name-msg');
+
+
 
 // Functions
 
@@ -51,7 +56,10 @@ function isValid(objFormData) {
     objFormData;
 
   if (!isFirstNameValid(firstName).isValid) {
-    console.log(isFirstNameValid(firstName).msg);
+    const newItem = document.createElement("p");       // Create a <li> node
+    const textnode = document.createTextNode("Water");  // Create a text node
+    newItem.appendChild(textnode);
+    //alert(firstNameMsg);
     return false;
   } else if
   (!isLastNameValid(lastName).isValid) {
@@ -68,6 +76,10 @@ function isValid(objFormData) {
   } else if
   (!isSubjectValid(subject).isValid) {
     console.log(isSubjectValid(subject).msg)
+    return false;
+  } else if 
+  (!isMessageValid(message).isValid) {
+    console.log(isMessageValid(message).msg)
     return false;
   }
   return true;
@@ -178,8 +190,34 @@ function isSubjectValid(subject) {
       msg: "Please insert subject",
     }
   };
-  return {
-    isValid: true,
-  }
-}
 
+  if(!isMaxNumberValid(subject, 20)) {
+    return {
+      isValid: false,
+      msg: "The subject needs to be less than 20 characters"
+    }
+  }
+    return {
+      isValid: true,
+    };
+  };
+
+  // Message
+function isMessageValid(message) {
+  if(!isRequiredFieldValid(message)) {
+    return {
+      isValid: false,
+      msg: "Please insert message",
+    }
+  };
+
+  if(!isMaxNumberValid(subject, 200)) {
+    return {
+      isValid: false,
+      msg: "The message needs to be less than 200 characters"
+    }
+  }
+    return {
+      isValid: true,
+    };
+  };
