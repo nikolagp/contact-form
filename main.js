@@ -20,12 +20,14 @@ function isAlphaCharacterValid(field) {
   return true;
 }
 
-function ValidateEmail(mail) 
-{
- if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail)) return false;
+function validateEmail(field) {
+ if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(field)) return false;
   return true;
-    // alert("You have entered an invalid email address!")
-    // return (false)
+}
+
+function validatePhone(number) {
+  if(!/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(number)) return false;
+  return true;
 }
 
 // Add listener to the submit button
@@ -58,6 +60,14 @@ function isValid(objFormData) {
   } else if
   (!isEmailValid(email).isValid) {
     console.log(isEmailValid(email).msg)
+    return false;
+  } else if 
+  (!isPhoneValid(mobileNumber).isValid) {
+    console.log(isPhoneValid(mobileNumber).msg)
+    return false;
+  } else if
+  (!isSubjectValid(subject).isValid) {
+    console.log(isSubjectValid(subject).msg)
     return false;
   }
   return true;
@@ -126,13 +136,50 @@ function isEmailValid(email) {
       isValid: false,
       msg: "The email is required!",
     };
-  }
+  };
 
-  if(!ValidateEmail(email)) {
+  if(!validateEmail(email)) {
     return {
       isValid: false,
       msg: "Please insert a valid email address",
     }
-  }
+  };
 
+  return {
+    isValid: true,
+  };
 }
+
+// Phone number
+function isPhoneValid(mobileNumber) {
+  if(!isRequiredFieldValid(mobileNumber)) {
+    return {
+      isValid: false,
+      msg: "Please insert a phone number",
+    }
+  };
+
+  if(!validatePhone(mobileNumber)) {
+    return {
+      isValid: false,
+      msg: "Please insert a valid US phone number"
+    }
+  }
+  return {
+    isValid: true,
+  };
+}
+
+// Subject
+function isSubjectValid(subject) {
+  if(!isRequiredFieldValid(subject)) {
+    return {
+      isValid: false,
+      msg: "Please insert subject",
+    }
+  };
+  return {
+    isValid: true,
+  }
+}
+
