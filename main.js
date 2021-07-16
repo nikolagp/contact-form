@@ -2,13 +2,22 @@ import "./bootstrap.css";
 import "./style.scss";
 
 const form = document.getElementById("form");
-const firstNameMsg = isFirstNameValid().msg;
+const nameInput = document.getElementById('first-name');
+const fNameError = document.getElementById('fname-error');
+const lNameError = document.getElementById('fname-error');
+const emailError = document.getElementById('email-error');
+
 //const firstNameMsg = document.createElement('p');
 //const firstNameP = getElementById('first-name-msg');
 
 
 
 // Functions
+const validateInputs = () => {
+  if(!nameInput.value) {
+    nameInput.nextElementSibling.classList.remove('hidden');
+  }
+}
 
 function isRequiredFieldValid(field) {
   if (!field) return false;
@@ -56,10 +65,7 @@ function isValid(objFormData) {
     objFormData;
 
   if (!isFirstNameValid(firstName).isValid) {
-    const newItem = document.createElement("p");       // Create a <li> node
-    const textnode = document.createTextNode("Water");  // Create a text node
-    newItem.appendChild(textnode);
-    //alert(firstNameMsg);
+    validateInputs();
     return false;
   } else if
   (!isLastNameValid(lastName).isValid) {
@@ -91,7 +97,7 @@ function isFirstNameValid(firstName) {
   if (!isRequiredFieldValid(firstName)) {
     return {
       isValid: false,
-      msg: "The first name is required!",
+      msg:"The first name is required",
     };
   }
 

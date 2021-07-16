@@ -14,32 +14,32 @@
       <form style="width: 100%" id="form">
         <div class="form-group">
           <label for="first-name">First Name:</label>
-          <p id="hiden">The first name is required!</p>
           <input type="text" class="form-control" id="first-name" placeholder="First Name" name="firstName" />
+          <p class="error-hint hidden">Please Enter First Name</p>
         </div>
         <div class="form-group">
           <label for="email">Last Name:</label>
-          <p id="hiden">The last name is required!</p>
+          <span id="lname-error" class="error"></span>
           <input type="text" class="form-control" id="last-name" placeholder="Last Name" name="lastName" />
         </div>
         <div class="form-group">
           <label for="email">Email:</label>
-          <p id="hiden">The email is required!</p>
+          <span id="email-error" class="error"></span>
           <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" />
         </div>
         <div class="form-group">
           <label for="mobile-number">Mobile Number:</label>
-          <p id="hiden">The mobile number is required!</p>
+          <span id="mobile-error" class="error"></span>
           <input type="text" class="form-control" id="mobile-number" placeholder="Mobile Number" name="mobileNumber" />
         </div>
         <div class="form-group">
           <label for="subject">Subject:</label>
-          <p id="hiden">The subject is required!</p>
+          <span id="subject-error" class="error"></span>
           <input type="text" class="form-control" id="subject" placeholder="Subject" name="subject" />
         </div>
         <div class="form-group">
           <label for="comment">Message:</label>
-          <p id="hiden">The subject is required!</p>
+          <span id="message-error" class="error"></span>
           <textarea class="form-control" rows="8" id="message" name="message"></textarea>
         </div>
         <button type="submit" class="btn btn-info">Submit</button>
