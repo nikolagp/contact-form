@@ -21,3 +21,16 @@ body {
 .hidden {
   display: none;
 }
+
+#error-message {
+  background-color: yellow;
+  color: red;
+  text-align: center;
+  width: 100%;
+  padding: 10px;
+  display: none;
+}
+
+.error-msg {
+  color: red;
+}

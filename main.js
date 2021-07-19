@@ -2,22 +2,22 @@ import "./bootstrap.css";
 import "./style.scss";
 
 const form = document.getElementById("form");
-const nameInput = document.getElementById('first-name');
-const fNameError = document.getElementById('fname-error');
-const lNameError = document.getElementById('fname-error');
-const emailError = document.getElementById('email-error');
+const errorMsg = document.getElementById('error-message');
+// const nameInput = document.getElementById('first-name');
+// const fNameError = document.getElementById('fname-error');
+// const lNameError = document.getElementById('fname-error');
+// const emailError = document.getElementById('email-error');
 
-//const firstNameMsg = document.createElement('p');
-//const firstNameP = getElementById('first-name-msg');
 
 
 
 // Functions
-const validateInputs = () => {
-  if(!nameInput.value) {
-    nameInput.nextElementSibling.classList.remove('hidden');
-  }
-}
+//Old Function for showing Error msg
+// const validateInputs = () => {
+//   if(!nameInput.value) {
+//     nameInput.nextElementSibling.classList.remove('hidden');
+//   }
+// }
 
 function isRequiredFieldValid(field) {
   if (!field) return false;
@@ -65,27 +65,21 @@ function isValid(objFormData) {
     objFormData;
 
   if (!isFirstNameValid(firstName).isValid) {
-    validateInputs();
     return false;
   } else if
   (!isLastNameValid(lastName).isValid) {
-    console.log(isLastNameValid(lastName).msg);
     return false;
   } else if
   (!isEmailValid(email).isValid) {
-    console.log(isEmailValid(email).msg)
     return false;
   } else if 
   (!isPhoneValid(mobileNumber).isValid) {
-    console.log(isPhoneValid(mobileNumber).msg)
     return false;
   } else if
   (!isSubjectValid(subject).isValid) {
-    console.log(isSubjectValid(subject).msg)
     return false;
   } else if 
   (!isMessageValid(message).isValid) {
-    console.log(isMessageValid(message).msg)
     return false;
   }
   return true;
@@ -94,24 +88,33 @@ function isValid(objFormData) {
 // First Name Validation
 
 function isFirstNameValid(firstName) {
+  const errorMsgShow = document.createElement('div');
+  const referenceNode = document.getElementById('first-name');
+  errorMsgShow.classList.add('error-msg');
   if (!isRequiredFieldValid(firstName)) {
+    const text = "The first name is required";
+    errorMsgShow.innerHTML = text;
+    referenceNode.after(errorMsgShow);
     return {
       isValid: false,
-      msg:"The first name is required",
     };
   }
 
   if (!isMaxNumberValid(firstName, 20)) {
+    const text = "The first name needs to be less than 20 characters!";
+    errorMsgShow.innerHTML = text;
+    referenceNode.after(errorMsgShow);
     return {
       isValid: false,
-      msg: "The first name needs to be less than 20 characters!",
     };
   }
 
   if (!isAlphaCharacterValid(firstName)) {
+    const text = "Only Alpha characters are allowed!";
+    errorMsgShow.innerHTML = text;
+    referenceNode.after(errorMsgShow);
     return {
       isValid: false,
-      msg: "Only Alpha characters are allowed!",
     };
   }
   return {
@@ -122,24 +125,33 @@ function isFirstNameValid(firstName) {
 // Last Name Validation
 
 function isLastNameValid(lastName) {
+  const errorMsgShow = document.createElement('div');
+  const referenceNode = document.getElementById('last-name');
+  errorMsgShow.classList.add('error-msg');
   if (!isRequiredFieldValid(lastName)) {
+    const text = "The last name is required!";
+    errorMsgShow.innerHTML = text;
+    referenceNode.after(errorMsgShow);
     return {
       isValid: false,
-      msg: "The last name is required!",
     };
   }
 
   if (!isMaxNumberValid(lastName, 20)) {
+    const text = "The last name needs to be less than 20 characters!";
+    errorMsgShow.innerHTML = text;
+    referenceNode.after(errorMsgShow);
     return {
       isValid: false,
-      msg: "The last name needs to be less than 20 characters!",
     };
   }
 
   if (!isAlphaCharacterValid(lastName)) {
+    const text = "Only Alpha characters are allowed!";
+    errorMsgShow.innerHTML = text;
+    referenceNode.after(errorMsgShow);
     return {
       isValid: false,
-      msg: "Only Alpha characters are allowed!",
     };
   }
   return {
