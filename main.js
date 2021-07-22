@@ -2,14 +2,13 @@ import "./bootstrap.css";
 import "./style.scss";
 
 const form = document.getElementById("form");
-const errorMsg = document.getElementById('error-message');
-// const nameInput = document.getElementById('first-name');
-// const fNameError = document.getElementById('fname-error');
-// const lNameError = document.getElementById('fname-error');
-// const emailError = document.getElementById('email-error');
-
-
-
+const errorMsgShow = document.createElement('div');
+const firstNameInput = document.querySelector('#first-name');
+const lastNameInput = document.querySelector('#last-name');
+const emailInput = document.querySelector('#first-name');
+const mobileNumberInput = document.querySelector('#mobile-number');
+const subjectInput = document.querySelector('#subject');
+const messageInput = document.querySelector('#message');
 
 // Functions
 //Old Function for showing Error msg
@@ -17,6 +16,32 @@ const errorMsg = document.getElementById('error-message');
 //   if(!nameInput.value) {
 //     nameInput.nextElementSibling.classList.remove('hidden');
 //   }
+// }
+
+// == Show Error == //
+// const showError = (input, message) => {
+//   // get the form-field element
+//   const formGroup = input.parentElement;
+//   // add the error class
+//   formGroup.classList.remove('success');
+//   formGroup.classList.add('error');
+
+//   // show the error message
+//   const error = formGroup.querySelector('small');
+//   error.textContent = message;
+// };
+
+// const showSuccess = (input) => {
+//   // get the form-field element
+//   const formGroup = input.parentElement;
+
+//   // remove the error class
+//   formGroup.classList.remove('error');
+//   formGroup.classList.add('success');
+
+//   // hide the error message
+//   const error = formGroup.querySelector('small');
+//   error.textContent = '';
 // }
 
 function isRequiredFieldValid(field) {
@@ -83,21 +108,25 @@ function isValid(objFormData) {
     return false;
   }
   return true;
+  
 }
 
-// First Name Validation
+// = First Name Validation = //
 
+//== Option One with textContent and innerHTML == //
 function isFirstNameValid(firstName) {
   const errorMsgShow = document.createElement('div');
   const referenceNode = document.getElementById('first-name');
   errorMsgShow.classList.add('error-msg');
   if (!isRequiredFieldValid(firstName)) {
     const text = "The first name is required";
-    errorMsgShow.innerHTML = text;
+    errorMsgShow.textContent = text;
     referenceNode.after(errorMsgShow);
     return {
       isValid: false,
     };
+  } else {
+    errorMsgShow.textContent = '';
   }
 
   if (!isMaxNumberValid(firstName, 20)) {
@@ -125,7 +154,7 @@ function isFirstNameValid(firstName) {
 // Last Name Validation
 
 function isLastNameValid(lastName) {
-  const errorMsgShow = document.createElement('div');
+  // const errorMsgShow = document.createElement('div');
   const referenceNode = document.getElementById('last-name');
   errorMsgShow.classList.add('error-msg');
   if (!isRequiredFieldValid(lastName)) {
